@@ -18,7 +18,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class UserModel{
+public class User{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,14 +30,14 @@ public class UserModel{
 	private String telefone;
 	private LocalDateTime dataCadastro;
 
-	public static UserModel convert(UserDto userDto) {
-		UserModel userModel = new UserModel();
-		userModel.setNome(userDto.getNome());
-		userModel.setEndereco(userDto.getEndereco());
-		userModel.setCpf(userDto.getCpf());
-		userModel.setEmail(userDto.getEmail());
-		userModel.setTelefone(userDto.getTelefone());
-		userModel.setDataCadastro(userDto.getDataCadastro());
-		return userModel;
+	public static User convert(UserDto userDto) {
+		User user = new User();
+		user.setNome(userDto.getNome());
+		user.setEndereco(userDto.getEndereco());
+		user.setCpf(userDto.getCpf());
+		user.setEmail(userDto.getEmail());
+		user.setTelefone(userDto.getTelefone());
+		user.setDataCadastro(userDto.getDataCadastro());
+		return user;
 	}
 }

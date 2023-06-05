@@ -2,7 +2,7 @@ package com.microservices.apiuser.dto;
 
 import java.time.LocalDateTime;
 
-import com.microservices.apiuser.model.UserModel;
+import com.microservices.apiuser.model.User;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -27,14 +27,14 @@ public class UserDto {
 	private	LocalDateTime	dataCadastro;
 
 
-	public	static	UserDto	convert(UserModel userModel) {
+	public	static	UserDto	convert(User user) {
 		UserDto	userDto	=	new	UserDto();
-		userDto.setNome(userModel.getNome());
-		userDto.setEndereco(userModel.getEndereco());
-		userDto.setCpf(userModel.getCpf());
-		userDto.setEmail(userModel.getEmail());
-		userDto.setTelefone(userModel.getTelefone());
-		userDto.setDataCadastro(userModel.getDataCadastro());
+		userDto.setNome(user.getNome());
+		userDto.setEndereco(user.getEndereco());
+		userDto.setCpf(user.getCpf());
+		userDto.setEmail(user.getEmail());
+		userDto.setTelefone(user.getTelefone());
+		userDto.setDataCadastro(user.getDataCadastro());
 		return	userDto;
 }
 
