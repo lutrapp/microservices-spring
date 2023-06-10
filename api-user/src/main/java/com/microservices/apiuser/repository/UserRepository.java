@@ -11,4 +11,5 @@ import com.microservices.apiuser.model.User;
 public interface UserRepository extends JpaRepository<User, Long>{
 	User findByCpf(String cpf);
 	List<User> queryByNomeLike(String name);
+	List<User> queryByNomeContaining(String name);
 }

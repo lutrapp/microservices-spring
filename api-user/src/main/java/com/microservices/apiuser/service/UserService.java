@@ -55,6 +55,11 @@ public class UserService {
 		return users.stream().map(UserDto::convert).collect(Collectors.toList());		
 	}
 	
+	public List<UserDto> queryByNomeContaining(String nome){
+		List<User> users = userRepository.queryByNomeContaining(nome);
+		return users.stream().map(UserDto::convert).collect(Collectors.toList());		
+	}
+	
 	public UserDto editUser(Long userId, UserDto userDto) {
 		User user = userRepository.findById(userId).orElseThrow(()-> new RuntimeException());
 		if(userDto.getEmail().equals(userDto.getEmail())) {

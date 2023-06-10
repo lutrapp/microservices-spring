@@ -61,9 +61,15 @@ public class UserController {
 	}
 	
 	@GetMapping("/search")
-	public List<UserDto> queryByNome(@RequestParam(name="nome", required = true) String nome){
+	public List<UserDto> searchByNome(@RequestParam(name="nome", required = true) String nome){
 		return userService.queryByNome(nome);
 	}
+	
+	@GetMapping("/search")
+	public List<UserDto> searchByNameContaining(@RequestParam(name="nome", required = true) String nome){
+		return userService.queryByNomeContaining(nome);
+	}
+	
 	
 	@PatchMapping("/{id}")
 	public UserDto editUser(@PathVariable Long id, @RequestBody UserDto userDto) {
