@@ -60,10 +60,10 @@ public class UserController {
 		userService.delete(id);
 	}
 	
-//	@GetMapping("/search")
-//	public List<UserDto> queryByName(@RequestParam(name="nome", required = true) String nome){
-//		return userService.queryByName(nome);
-//	}
+	@GetMapping("/search")
+	public List<UserDto> queryByNome(@RequestParam(name="nome", required = true) String nome){
+		return userService.queryByNome(nome);
+	}
 	
 	@PatchMapping("/{id}")
 	public UserDto editUser(@PathVariable Long id, @RequestBody UserDto userDto) {

@@ -50,10 +50,10 @@ public class UserService {
 		return null;
 	}
 	
-//	public List<UserDto> queryByName(String name){
-//		List<User> users = userRepository.queryByNameLike(name);
-//		return users.stream().map(UserDto::convert).collect(Collectors.toList());		
-//	}
+	public List<UserDto> queryByNome(String nome){
+		List<User> users = userRepository.queryByNomeLike(nome);
+		return users.stream().map(UserDto::convert).collect(Collectors.toList());		
+	}
 	
 	public UserDto editUser(Long userId, UserDto userDto) {
 		User user = userRepository.findById(userId).orElseThrow(()-> new RuntimeException());
