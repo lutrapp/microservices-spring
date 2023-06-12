@@ -1,6 +1,6 @@
 package com.microservices.apiproducts.model;
 
-import com.microservices.apiproducts.dto.CategoryProductDto;
+import com.microservices.shoppingclient.dto.CategoryProductDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.microservices.apishop.dto.ShopDto;
+import com.microservices.shoppingclient.dto.ShopDto;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;

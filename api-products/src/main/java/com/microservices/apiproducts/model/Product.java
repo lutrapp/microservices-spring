@@ -1,6 +1,7 @@
 package com.microservices.apiproducts.model;
 
-import com.microservices.apiproducts.dto.ProductDto;
+import com.microservices.apiproducts.dto.DtoConverter;
+import com.microservices.shoppingclient.dto.ProductDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,6 +38,9 @@ public class Product {
 		product.setPreco(productDto.getPreco());
 		product.setDescricao(productDto.getDescricao());
 		product.setProductIdentifier(productDto.getProductIdentifier());
+//		if (productDto.getCategory() != null) {
+//			product.setCategoryProduct(DtoConverter.convert(productDto.getCategory()));
+//		}
 		if (productDto.getCategory() != null) {
 			product.setCategoryProduct(CategoryProduct.convert(productDto.getCategory()));
 		}

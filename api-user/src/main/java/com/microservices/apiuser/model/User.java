@@ -2,7 +2,7 @@ package com.microservices.apiuser.model;
 
 import java.time.LocalDateTime;
 
-import com.microservices.apiuser.dto.UserDto;
+import com.microservices.shoppingclient.dto.UserDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.microservices.apishop.dto.ShopDto;
+//import com.microservices.apishop.dto.ShopDto;
 import com.microservices.apishop.dto.ShopReportDto;
 import com.microservices.apishop.service.ReportService;
 import com.microservices.apishop.service.ShopService;
+import com.microservices.shoppingclient.dto.ShopDto;
 
 import lombok.RequiredArgsConstructor;
 

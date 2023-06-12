@@ -8,9 +8,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.microservices.apiproducts.dto.ProductDto;
+import com.microservices.apiproducts.dto.DtoConverter;
 import com.microservices.apiproducts.model.Product;
 import com.microservices.apiproducts.repository.ProductRepository;
+import com.microservices.shoppingclient.dto.ProductDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,25 +22,25 @@ public class ProductService {
 
 	public List<ProductDto> getAll() {
 		List<Product> products = productRepository.findAll();
-		return products.stream().map(ProductDto::convert).collect(Collectors.toList());
+		return products.stream().map(DtoConverter::convert).collect(Collectors.toList());
 	}
 
 	public List<ProductDto> getProductByCategoryId(Long categoryId) {
 		List<Product> products = productRepository.getProductByCategory(categoryId);
-		return products.stream().map(ProductDto::convert).collect(Collectors.toList());
+		return products.stream().map(DtoConverter::convert).collect(Collectors.toList());
 	}
 
 	public ProductDto findByProductIdentifier(String productIdentifier) {
 		Product product = productRepository.findByProductIdentifier(productIdentifier);
 		if (product != null) {
-			return ProductDto.convert(product);
+			return DtoConverter.convert(product);
 		}
 		return null;
 	}
 
 	public ProductDto save(ProductDto productDto) {
 		Product product = productRepository.save(Product.convert(productDto));
-		return ProductDto.convert(product);
+		return DtoConverter.convert(product);
 	}
 
 	public void delete(long productId) {
@@ -59,12 +60,12 @@ public class ProductService {
 			product.setPreco(dto.getPreco());
 		}
 
-		return ProductDto.convert(productRepository.save(product));
+		return DtoConverter.convert(productRepository.save(product));
 	}
 
 	public Page<ProductDto> getAllPage(Pageable page) {
 		Page<Product> users = productRepository.findAll(page);
-		return users.map(ProductDto::convert);
+		return users.map(DtoConverter::convert);
 	}
 
 }

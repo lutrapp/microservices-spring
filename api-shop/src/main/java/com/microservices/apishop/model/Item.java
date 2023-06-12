@@ -1,6 +1,7 @@
 package com.microservices.apishop.model;
 
-import com.microservices.apishop.dto.ItemDto;
+
+import com.microservices.shoppingclient.dto.ItemDto;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

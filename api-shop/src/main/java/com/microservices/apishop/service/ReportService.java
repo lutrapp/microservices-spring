@@ -6,11 +6,12 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.microservices.apishop.dto.ShopDto;
+import com.microservices.apishop.dto.DtoConverter;
+//import com.microservices.apishop.dto.ShopDto;
 import com.microservices.apishop.dto.ShopReportDto;
 import com.microservices.apishop.model.Shop;
-import com.microservices.apishop.repository.ShopRepository;
 import com.microservices.apishop.repositoryImpl.ReportRepositoryImpl;
+import com.microservices.shoppingclient.dto.ShopDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +23,7 @@ public class ReportService {
 
 	public List<ShopDto> getShopsByFilter(LocalDate dataInicio, LocalDate dataFim, Float valorMinimo) {
 		List<Shop> shops = reportRepositoryImpl.getShopByFilters(dataInicio, dataFim, valorMinimo);
-		return shops.stream().map(ShopDto::convert).collect(Collectors.toList());
+		return shops.stream().map(DtoConverter::convert).collect(Collectors.toList());
 	}
 
 	public ShopReportDto getReportByDate(LocalDate dataInicio, LocalDate dataFim) {

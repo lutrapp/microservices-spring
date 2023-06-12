@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.microservices.apiuser.dto.UserDto;
 import com.microservices.apiuser.service.UserService;
+import com.microservices.shoppingclient.dto.UserDto;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -60,12 +60,12 @@ public class UserController {
 		userService.delete(id);
 	}
 	
-	@GetMapping("/search")
-	public List<UserDto> searchByNome(@RequestParam(name="nome", required = true) String nome){
+	@GetMapping("/searchByName")
+	public List<UserDto> searchByName(@RequestParam(name="nome", required = true) String nome){
 		return userService.queryByNome(nome);
 	}
 	
-	@GetMapping("/search")
+	@GetMapping("/searchByNameContaining")
 	public List<UserDto> searchByNameContaining(@RequestParam(name="nome", required = true) String nome){
 		return userService.queryByNomeContaining(nome);
 	}

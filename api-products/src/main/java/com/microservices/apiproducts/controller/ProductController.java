@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.microservices.apiproducts.dto.ProductDto;
 import com.microservices.apiproducts.service.ProductService;
+import com.microservices.shoppingclient.dto.ProductDto;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
