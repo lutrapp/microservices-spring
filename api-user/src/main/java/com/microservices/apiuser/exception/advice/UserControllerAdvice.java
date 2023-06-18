@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.microservices.shoppingclient.dto.ErrorDto;
 import com.microservices.shoppingclient.exception.UserNotFoundException;
 
-@ControllerAdvice(basePackages = "com.microservices.controller")
+@ControllerAdvice(basePackages = "com.microservices.apiuser.controller")
 public class UserControllerAdvice {
 	@ResponseBody
 	@ResponseStatus(HttpStatus.NOT_FOUND)

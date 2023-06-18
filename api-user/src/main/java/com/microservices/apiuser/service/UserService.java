@@ -2,6 +2,7 @@ package com.microservices.apiuser.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
@@ -33,6 +34,7 @@ public class UserService {
 	}
 	
 	public UserDto save(UserDto userDto) {
+		userDto.setKey(UUID.randomUUID().toString());
 		userDto.setDataCadastro(LocalDateTime.now());
 		User user = userRepository.save(User.convert(userDto));
 		return DtoConverter.convert(user);
@@ -44,8 +46,8 @@ public class UserService {
 		return DtoConverter.convert(user);
 	}
 	
-	public UserDto findByCpf(String cpf) {
-		User user = userRepository.findByCpf(cpf);
+	public UserDto findByCpf(String cpf, String key) {
+		User user = userRepository.findByCpfAndKey(cpf, key);
 		if(user != null) {
 			return DtoConverter.convert(user);
 		}

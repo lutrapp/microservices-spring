@@ -40,10 +40,9 @@ public class UserController {
 	}
 
 	@GetMapping("/cpf/{cpf}")
-	public UserDto findByCpf(@PathVariable String cpf) {
-//		return usuarios.stream().filter(userDto -> userDto.getCpf().equals(cpf)).findFirst()
-//				.orElseThrow(() -> new RuntimeException("User not found"));
-		return userService.findByCpf(cpf);
+	public UserDto findByCpf(@PathVariable String cpf, 
+			@RequestParam(name="key", required = true) String key) {
+		return userService.findByCpf(cpf, key);
 	}
 
 	@PostMapping("/insertnewuser")

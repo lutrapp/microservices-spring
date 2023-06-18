@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ErrorDto {
-private int status;
-private String message;
-private LocalDateTime timestamp;
+	private int status;
+	private String message;
+	private LocalDateTime timestamp;
 }

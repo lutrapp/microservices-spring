@@ -21,14 +21,14 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ShopService {
-	
+
 	@Autowired
 	private ShopRepository shopRepository;
 	@Autowired
 	private ProductService productService;
 	@Autowired
 	private UserService userService;
-	
+
 //	private final ShopRepository shopRepository;
 
 	public List<ShopDto> getAll() {
@@ -37,13 +37,13 @@ public class ShopService {
 		return shops.stream().map(DtoConverter::convert).collect(Collectors.toList());
 	}
 
-	public List<ShopDto> getByUser(String userIdentifier) {//cpf
+	public List<ShopDto> getByUser(String userIdentifier) {// cpf
 		List<Shop> shops = shopRepository.findAllByUserIdentifier(userIdentifier);
 
 		return shops.stream().map(DtoConverter::convert).collect(Collectors.toList());
 	}
 
-	//TODO method not working
+	// TODO method not working
 	public List<ShopDto> getByDate(LocalDateTime date) {
 		List<Shop> shops = shopRepository.findAllByDateGreaterThan(date);
 		return shops.stream().map(DtoConverter::convert).collect(Collectors.toList());
@@ -57,21 +57,22 @@ public class ShopService {
 		return null;
 	}
 
-	public ShopDto save(ShopDto shopDto) {
+	public ShopDto save(ShopDto shopDto, String key) {
+		userService.getUserByCpf(shopDto.getUserIdentifier(), key); //TODO  try/catch?
 		
-		if(userService
-				.getUserByCpf(shopDto.getUserIdentifier()) == null) {
-			return null;
-		}
-		
-		if(!validateProducts(shopDto.getItems())) {
-			return null;
-		}
-		
-		shopDto.setTotal(shopDto.getItems()
-				.stream()
-				.map(x -> x.getPrice())
-				.reduce((float) 0, Float::sum));
+		validateProducts(shopDto.getItems());
+
+//		if(userService
+//				.getUserByCpf(shopDto.getUserIdentifier(), key) == null) {
+//			return null;
+//		}
+//		
+//		if(!validateProducts(shopDto.getItems())) {
+//			return null;
+//		}
+
+		shopDto.setTotal(shopDto.getItems().stream().map(x -> x.getPrice()).reduce((float) 0, Float::sum));
+
 		Shop shop = Shop.convert(shopDto);
 		shop.setDate(LocalDateTime.now());
 		shop = shopRepository.save(shop);
@@ -79,16 +80,14 @@ public class ShopService {
 	}
 
 	private boolean validateProducts(List<ItemDto> itens) {
-		for(ItemDto item : itens) {
-			ProductDto productDto = productService
-					.getProductByIdentifier(item.getProductIdentifier());
-			if(productDto == null) {
+		for (ItemDto item : itens) {
+			ProductDto productDto = productService.getProductByIdentifier(item.getProductIdentifier());
+			if (productDto == null) {
 				return false;
 			}
-			item.setPrice(productDto.getPreco());	
+			item.setPrice(productDto.getPreco());
 		}
 		return true;
 	}
-	
 
 }
