@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ItemDto {
 	@NotBlank
-	private String productIdentifier;
+	private String productIdentifier; //TODO AVALIAR TROCAR O NOME PARA SKU (OU EAN) AJUSTAR BANCO DE DADOS
 	@NotNull
 	private Float price;
 }

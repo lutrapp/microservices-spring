@@ -29,7 +29,7 @@ public class UserController {
 	
 	private final UserService userService;
 
-	@GetMapping
+	@GetMapping("/all")
 	public List<UserDto> getUsers() {
 		return userService.getAll();
 	}
@@ -39,7 +39,7 @@ public class UserController {
 		return userService.findById(id);
 	}
 
-	@GetMapping("/{cpf}/cpf")
+	@GetMapping("/cpf/{cpf}")
 	public UserDto findByCpf(@PathVariable String cpf) {
 //		return usuarios.stream().filter(userDto -> userDto.getCpf().equals(cpf)).findFirst()
 //				.orElseThrow(() -> new RuntimeException("User not found"));

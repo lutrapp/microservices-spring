@@ -18,7 +18,7 @@ public class UserService {
 					.build();
 			
 			Mono<UserDto> user = webClient.get()
-					.uri("/user/" + cpf + "/cpf")
+					.uri("/user/cpf/" + cpf)
 					.retrieve()
 					.bodyToMono(UserDto.class);
 			

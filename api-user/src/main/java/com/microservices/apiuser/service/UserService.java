@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.microservices.apiuser.dto.DtoConverter;
 import com.microservices.apiuser.model.User;
 import com.microservices.apiuser.repository.UserRepository;
+import com.microservices.shoppingclient.exception.UserNotFoundException;
 import com.microservices.shoppingclient.dto.UserDto;
 
 import lombok.RequiredArgsConstructor;
@@ -48,7 +49,8 @@ public class UserService {
 		if(user != null) {
 			return DtoConverter.convert(user);
 		}
-		return null;
+//		return null;
+		throw new UserNotFoundException();
 	}
 	
 	public List<UserDto> queryByNome(String nome){

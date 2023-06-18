@@ -17,13 +17,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShopDto {
-	@NotBlank
-	private String userIdentifier;
+
+	private String userIdentifier; //cpf
 
 	private Float total;
-	@NotNull
+	
 	private LocalDateTime date;
-	@NotNull
+
 	private List<ItemDto> items;
 
 }

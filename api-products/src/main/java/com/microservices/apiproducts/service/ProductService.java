@@ -12,6 +12,8 @@ import com.microservices.apiproducts.dto.DtoConverter;
 import com.microservices.apiproducts.model.Product;
 import com.microservices.apiproducts.repository.ProductRepository;
 import com.microservices.shoppingclient.dto.ProductDto;
+import com.microservices.shoppingclient.exception.CategoryNotFoundException;
+import com.microservices.shoppingclient.exception.ProductNotFoundException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductService {
 	private final ProductRepository productRepository;
+//	private final CategoryRepository categoryRepository;
 
 	public List<ProductDto> getAll() {
 		List<Product> products = productRepository.findAll();
@@ -31,23 +34,33 @@ public class ProductService {
 	}
 
 	public ProductDto findByProductIdentifier(String productIdentifier) {
-		Product product = productRepository.findByProductIdentifier(productIdentifier);
+		Product product = productRepository
+				.findByProductIdentifier(productIdentifier);
 		if (product != null) {
 			return DtoConverter.convert(product);
 		}
-		return null;
+		throw new ProductNotFoundException();
 	}
 
 	public ProductDto save(ProductDto productDto) {
-		Product product = productRepository.save(Product.convert(productDto));
+		//TODO VERIFICAR SE ESTA CORRETO O METODO ABAIXO, OS PARAMETROS
+		Boolean existsCategory = productRepository.existsById(productDto.getCategory().getId());
+		if(!existsCategory) {
+			throw new CategoryNotFoundException();
+		}
+		
+		Product product = productRepository
+				.save(Product.convert(productDto));
 		return DtoConverter.convert(product);
 	}
 
-	public void delete(long productId) {
-		Optional<Product> product = productRepository.findById(productId);
+	public void delete(long productId) throws ProductNotFoundException {
+		Optional<Product> product = productRepository
+				.findById(productId);
 		if (product.isPresent()) {
 			productRepository.delete(product.get());
 		}
+		throw new ProductNotFoundException();
 	}
 
 	public ProductDto editProduct(long id, ProductDto dto) {

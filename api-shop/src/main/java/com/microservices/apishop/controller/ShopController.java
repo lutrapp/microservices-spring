@@ -1,6 +1,7 @@
 package com.microservices.apishop.controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-//import com.microservices.apishop.dto.ShopDto;
 import com.microservices.apishop.dto.ShopReportDto;
+//import com.microservices.apishop.dto.ShopDto;
+//import com.microservices.apishop.dto.ShopReportDto;
 import com.microservices.apishop.service.ReportService;
 import com.microservices.apishop.service.ShopService;
 import com.microservices.shoppingclient.dto.ShopDto;
@@ -32,15 +34,15 @@ public class ShopController {
 		return shopService.getAll();
 	}
 
-	@GetMapping("/shopByUser/{userIdentifier}")
+	@GetMapping("/shopByUser/{userIdentifier}") //cpf
 	public List<ShopDto> getShops(@PathVariable String userIdentifier) {
 		return shopService.getByUser(userIdentifier);
 	}
 
 	@GetMapping("/shopByDate")
-	public List<ShopDto> getShops(@RequestBody ShopDto shopDto) {
+	public List<ShopDto> getShops(@PathVariable LocalDateTime date) {
 
-		return shopService.getByDate(shopDto);
+		return shopService.getByDate(date);
 	}
 
 	@GetMapping("/{id}")
