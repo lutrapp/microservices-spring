@@ -66,7 +66,7 @@ public class UserService {
 	}
 	
 	public UserDto editUser(Long userId, UserDto userDto) {
-		User user = userRepository.findById(userId).orElseThrow(()-> new RuntimeException());
+		User user = userRepository.findById(userId).orElseThrow(()-> new UserNotFoundException());
 		if(userDto.getEmail().equals(userDto.getEmail())) {
 			user.setEmail(userDto.getEmail());
 		}
