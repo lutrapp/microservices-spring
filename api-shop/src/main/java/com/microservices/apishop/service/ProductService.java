@@ -1,5 +1,6 @@
 package com.microservices.apishop.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -9,7 +10,9 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class ProductService {
-	private String productApiURL = "http://localhost:8080";
+	@Value("${PRODUCT_API_URL:http://localhost:8080}")
+	private String productApiURL;
+//	private String productApiURL = "http://localhost:8080";
 	public ProductDto getProductByIdentifier(String productIdentifier) {
 		try {
 			WebClient webClient = WebClient.builder()

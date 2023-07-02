@@ -1,5 +1,6 @@
 package com.microservices.apishop.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -11,7 +12,9 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class UserService {
-	private String userApiURL = "http://localhost:8081";
+	@Value("${USER_API_URL:http://localhost:8081}")
+	private String userApiURL;
+//	private String userApiURL = "http://localhost:8081";
 
 	public UserDto getUserByCpf(String cpf, String key) {
 		try {
